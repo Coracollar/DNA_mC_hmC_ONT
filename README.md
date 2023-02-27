@@ -4,7 +4,7 @@
 
 Fast5s from each sample need to be located in a separate folder. For each sample we run megalodon_mC_hmC.slurm.
 
-We obtain methylation and hydroxymethylation frequency files from megalodon in the form of be files.
+We obtain methylation and hydroxymethylation frequency files from megalodon in the form of bed files.
 ```bash
 head modified_bases.5mC.bed
 chr10	3125029	3125030	.	11	+	3125029	3125030	0,0,0	11	90.9
