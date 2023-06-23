@@ -28,7 +28,7 @@ For PCA analysis we created a matrix of counts per sample per CpG. This can be o
 library(factoextra)
 methylation_data<-getMeth(BSobj, type="raw")
 methylation_data<-na.omit(methylation_data)
-PCA<-prcomp(t(methylation_data), scale = FALSE)
+PCA<-prcomp(t(methylation_data), scale = FALSE) # scale = FALSE means we don't want to scale the variables so they have a standard deviation of 1.
 
 #visualize PCA
 fviz_eig(PCA) # inspect how many components there are and their contribution to the total.
