@@ -1,4 +1,6 @@
-#incomplete
+#plot and ttest from a count matrix.
+#normdata would be a count matrix with samples as columns and CpGs as lines.
+#grtabla is a genomic ranges object with all the CpG positions from normdata. Ibtained from the BSobject.
 
 extractregion<-function(matrix, chr, start, end){
   gr<- GRanges(seqnames = chr,
