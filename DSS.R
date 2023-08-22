@@ -61,7 +61,7 @@ prepare_for_DSS<-function(query){
   return(query)
 }
 
-#mC
+#load data from my sequencing that has been transformed in order to have the columns needed for a bssew object.
 C0<-read.table(file="~/C0/mCmethylation.bsseq.tsv,  header=T, sep="\t")
 
 C1<-read.table(file="~/C1/mCmethylation.bsseq.tsv",  header=T, sep="\t")
@@ -89,11 +89,13 @@ CORT15_DSS<-prepare_for_DSS(CORT15)
 
 rm(C0, C1, C2, C3, CORT12, CORT13, CORT14, CORT15)
 
+#create bsseq object
 BSobjmc <- makeBSseqData( list(C0_DSS, C1_DSS, C2_DSS, C3_DSS, CORT12_DSS, CORT13_DSS, CORT14_DSS, CORT15_DSS),
                         c("C0","C1", "C2", "C3", "CORT12", "CORT13", "CORT14", "CORT15") )
 
 rm(C0_DSS, C1_DSS, C2_DSS, C3_DSS, CORT12_DSS, CORT13_DSS, CORT14_DSS, CORT15_DSS)
 
+#perfomr differential methylated test
 dmlTest= DMLtest(BSobjhmc, group1=c("CORT12", "CORT13", "CORT14", "CORT15"), group2=c("C0","C1", "C2", "C3"), smoothing=FALSE)
 
 dmrs = callDMR(dmlTest, p.threshold=0.05)
