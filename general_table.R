@@ -91,5 +91,9 @@ for (i in levels(df2h$type)){
   print(test)
 }
 
-
+#plot data means of each genomic regions
+ggplot(df2h, aes(x=Treatment, y=`Hydroxymethylation frequency`)) + 
+geom_boxplot(aes(fill=Treatment)) + geom_point() + facet_wrap(~`type`,scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust=1))
+ggplot(df2, aes(x=Treatment, y=`Methylation frequency`)) + 
+geom_boxplot(aes(fill=Treatment)) + geom_point() + facet_wrap(~`type`,scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust=1))
 
