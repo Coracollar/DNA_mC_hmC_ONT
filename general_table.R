@@ -73,11 +73,27 @@ for (i in levels(df3h_means$`Genomic region`)){
   print(c)
 }
 
-#t test of the global mean per sample of each region
+
 df2<-df3 %>% group_by(type)%>% summarise(across(where(is.numeric), list(mean))) %>% gather(key="Sample", value="Methylation frequency", -type)
 df2$Treatment<-c(rep("F0 Control",16*4), rep("F0 CORT",16*4), rep("F1 Control",16*6), rep( "F1 PatCORT",16*6))
 df2h<-df3h %>% group_by(type)%>% summarise(across(where(is.numeric), list(mean))) %>% gather(key="Sample", value="Hydroxymethylation frequency", -type)
 df2h$Treatment<-c(rep("F0 Control",16*4), rep("F0 CORT",16*4), rep("F1 Control",16*6), rep( "F1 PatCORT",16*6))
+
+#Kruskal-Wallis rank sum test
+for (i in levels(df2$type)){
+  Data<-df2[df2$type==i,]
+  test<-kruskal.test(Data$`Methylation frequency`, Data$Treatment, p.adjust.method="none")
+  print(i)
+  print(test)
+}
+for (i in levels(df2h$type)){
+  Data<-df2h[df2h$type==i,]
+  test<-kruskal.test(Data$`Hydroxymethylation frequency`, Data$Treatment, p.adjust.method="none")
+  print(i)
+  print(test)
+}
+
+#Post hoc analysis using wilcox pairwise of the global mean per sample of each region
 for (i in levels(df2$type)){
   Data<-df2[df2$type==i,]
   test<-pairwise.wilcox.test(Data$`Methylation frequency`, Data$Treatment, p.adjust.method="none")
