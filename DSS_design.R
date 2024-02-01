@@ -99,7 +99,7 @@ Treatment = c(rep("Control",4), rep( "CORT",4))
 Quality = c(12.0 , 13.0 , 10.9 , 11.5 , 8.2 ,10.9 , 12.6 , 12.3)
 design = data.frame(Treatment, Quality)
 
-DMLfit = DMLfit.multiFactor(BSobjmc, design=design, formula=~0+Treatment+Quality
+DMLfit = DMLfit.multiFactor(BSobjmc, design=design, formula=~Treatment+Quality)
 
 DMLtest.TreatmentCORT = DMLtest.multiFactor(DMLfit, coef="TreatmentCORT")
 
